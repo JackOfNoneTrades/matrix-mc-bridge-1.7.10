@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "matrixminecraftbridge",
+    "name": "Matrix Minecraft Bridge",
+    "description": "Simple mod that bridges a Matrix room and a Minecraft server or singleplayer world",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://www.mcdrama.net/articles/mods.html",
+    "updateUrl": "https://github.com/trollogyadherent/matrix-mc-bridge-1.7.10",
+    "authorList": "trollogyadherent",
+    "credits": "",
+    "logoFile": "assets/matrixminecraftbridge/logo.png",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
