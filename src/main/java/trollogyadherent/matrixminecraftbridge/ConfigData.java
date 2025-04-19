@@ -1,9 +1,12 @@
 package trollogyadherent.matrixminecraftbridge;
 
 public class ConfigData {
-    private String host, username, password, token, roomId, startupMessage, stopMessage, joinMessage, leaveMessage, deathMessage, achievementMessage;
 
-    public ConfigData(String host, String username, String password, String token, String roomId, String startupMessage, String stopMessage, String joinMessage, String leaveMessage, String deathMessage, String achievementMessage) {
+    private String host, username, password, token, roomId, startupMessage, stopMessage, joinMessage, leaveMessage,
+        deathMessage, achievementMessage;
+
+    public ConfigData(String host, String username, String password, String token, String roomId, String startupMessage,
+        String stopMessage, String joinMessage, String leaveMessage, String deathMessage, String achievementMessage) {
         this.host = host;
         this.username = username;
         this.password = password;
