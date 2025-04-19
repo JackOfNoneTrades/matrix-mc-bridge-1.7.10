@@ -27,7 +27,7 @@ public class Util {
         return false;
     }
 
-    private ArrayList getSplitUrls(String str) {
+    private ArrayList<String> getSplitUrls(String str) {
         ArrayList<String> text_and_urls = new ArrayList<>();
         Matcher matcher = urlPattern.matcher(str);
         int lastIndex = 0;
