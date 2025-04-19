@@ -34,7 +34,8 @@ public class Util {
         while (matcher.find()) {
             int matchStart = matcher.start(1);
             int matchEnd = matcher.end();
-            // System.out.println("Found url in message, start_index: " + matchStart + ", end_index: " + matchEnd);
+            // MatrixMinecraftBridge.LOG.debug("Found url in message, start_index: " + matchStart + ", end_index: " +
+            // matchEnd);
             text_and_urls.add(str.substring(lastIndex, matchStart));
             text_and_urls.add(str.substring(matchStart, matchEnd - 1));
             lastIndex = matchEnd - 1;
