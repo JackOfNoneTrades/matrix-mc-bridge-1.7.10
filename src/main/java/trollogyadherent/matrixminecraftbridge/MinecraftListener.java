@@ -48,8 +48,6 @@ public class MinecraftListener {
         ICommandSender sender = event.sender;
 
         if (commandName.equalsIgnoreCase("say") || commandName.equalsIgnoreCase("me")) {
-            boolean isSayCommand = commandName.equalsIgnoreCase("say");
-
             if (sender instanceof FakePlayer) {
                 return;
             }
