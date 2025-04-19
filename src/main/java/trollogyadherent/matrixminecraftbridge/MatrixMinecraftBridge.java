@@ -1,16 +1,24 @@
 package trollogyadherent.matrixminecraftbridge;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.*;
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
+import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
-@Mod(modid  = MatrixMinecraftBridge.MODID, name = MatrixMinecraftBridge.NAME, version = MatrixMinecraftBridge.VERSION, acceptableRemoteVersions = "*")
+@Mod(
+    modid = MatrixMinecraftBridge.MODID,
+    name = MatrixMinecraftBridge.NAME,
+    version = Tags.VERSION,
+    acceptableRemoteVersions = "*")
 public class MatrixMinecraftBridge {
+
     public static final String MODID = "matrixminecraftbridge";
     public static final String NAME = "Matrix Minecraft Bridge 1.7.10";
-    public static final String VERSION = "@version@";
+    public static final String VERSION = Tags.VERSION;
     public static final String CONFIGFILELOCATION = "config/matrix-bridge.json";
 
     private Config configInstance;
@@ -21,7 +29,9 @@ public class MatrixMinecraftBridge {
     @Mod.EventHandler
     public void onPreInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(minecraftListener);
-        FMLCommonHandler.instance().bus().register(minecraftListener);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(minecraftListener);
     }
 
     @Mod.EventHandler
@@ -31,7 +41,9 @@ public class MatrixMinecraftBridge {
             System.out.println("Warning! Incorrect or missing config file!");
             return;
         }
-        System.out.println(configInstance.getConfigData().getHost());
+        System.out.println(
+            configInstance.getConfigData()
+                .getHost());
         matrixClientInstance = MatrixClient.getInstance();
         matrixClientInstance.connect();
     }
@@ -45,7 +57,10 @@ public class MatrixMinecraftBridge {
             System.out.println("Warning! Incorrect or missing config file!");
             return;
         }
-        MatrixClient.getInstance().sendToMatrix(configInstance.getConfigData().getStartupMessage());
+        MatrixClient.getInstance()
+            .sendToMatrix(
+                configInstance.getConfigData()
+                    .getStartupMessage());
     }
 
     @Mod.EventHandler
@@ -57,6 +72,9 @@ public class MatrixMinecraftBridge {
             System.out.println("Warning! Incorrect or missing config file!");
             return;
         }
-        MatrixClient.getInstance().sendToMatrix(configInstance.getConfigData().getStopMessage());
+        MatrixClient.getInstance()
+            .sendToMatrix(
+                configInstance.getConfigData()
+                    .getStopMessage());
     }
 }
