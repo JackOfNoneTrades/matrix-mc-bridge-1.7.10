@@ -6,11 +6,11 @@ import cpw.mods.fml.common.event.*;
 import net.minecraftforge.common.MinecraftForge;
 
 
-@Mod(modid  = MatrixMinecraftBridge.MODID, name = MatrixMinecraftBridge.NAME, version = MatrixMinecraftBridge.VERSION, acceptableRemoteVersions = "*")
+@Mod(modid  = MatrixMinecraftBridge.MODID, name = MatrixMinecraftBridge.NAME, version = Tags.VERSION, acceptableRemoteVersions = "*")
 public class MatrixMinecraftBridge {
     public static final String MODID = "matrixminecraftbridge";
     public static final String NAME = "Matrix Minecraft Bridge 1.7.10";
-    public static final String VERSION = "@version@";
+    public static final String VERSION = Tags.VERSION;
     public static final String CONFIGFILELOCATION = "config/matrix-bridge.json";
 
     private Config configInstance;
