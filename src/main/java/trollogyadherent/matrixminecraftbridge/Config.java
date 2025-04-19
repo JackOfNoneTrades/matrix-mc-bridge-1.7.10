@@ -22,13 +22,13 @@ public class Config {
             charset.setAccessible(true);
             charset.set(null, null);
         } catch (Exception e) {
-            System.out.println("Something went wrong with charset accessibility");
+            MatrixMinecraftBridge.LOG.warn("Something went wrong with charset accessibility");
         }
         sConfigFile = MatrixMinecraftBridge.CONFIGFILELOCATION;
         try {
             File configFile = new File(sConfigFile);
             if (!configFile.exists()) {
-                System.out.println("Configfile not exists. Creating default-config");
+                MatrixMinecraftBridge.LOG.info("Configfile not exists. Creating default-config");
                 if (configFile.createNewFile()) {
                     FileHelper.writeFile(
                         sConfigFile,
@@ -44,12 +44,12 @@ public class Config {
                             + "  \"deathMessage\": \"\uD83D\uDC80 %player% just died due to %reason%\",\n"
                             + "  \"achievementMessage\": \"\uD83C\uDF86 %player% just gained the achievement %achievement%\\n%description%\"\n"
                             + "}\n");
-                    System.out.println(
+                    MatrixMinecraftBridge.LOG.info(
                         "Default-config created!\r\n"
                             + "You can pass username and password OR usertoken\r\nAdjust the config and restart the bot\r\nPassword will be cleaned and replaced with usertoken");
                     // System.exit(0);
                 } else {
-                    System.out.println("Couldn't create default-config! Exiting");
+                    MatrixMinecraftBridge.LOG.warn("Couldn't create default-config! Exiting");
                     // System.exit(1);
                 }
             } else {
@@ -86,7 +86,7 @@ public class Config {
                         deathMessage,
                         achievementMessage);
                 } catch (JSONException e) {
-                    System.out.println(
+                    MatrixMinecraftBridge.LOG.warn(
                         "Configfile in from format! Watch for correct json-content!\r\nYou can delete the config and restart the bot to create a blank config");
                     // System.exit(1);
                 }

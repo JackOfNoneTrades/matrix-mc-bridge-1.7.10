@@ -29,7 +29,7 @@ public class MatrixClient {
     public void connect() {
         configInstance = Config.getInstance();
         if (configInstance.getConfigData() == null) {
-            System.out.println("Warning! Incorrect or missing config file!");
+            MatrixMinecraftBridge.LOG.warn("Incorrect or missing config file!");
             return;
         }
         Client c = new Client(
@@ -78,22 +78,22 @@ public class MatrixClient {
                     data -> { clientLoggedIn(c); });
             }
         } catch (Exception e) {
-            System.out.println("Something went wrong while connecting to matrix");
+            MatrixMinecraftBridge.LOG.error("Something went wrong while connecting to matrix");
         }
     }
 
     private void clientLoggedIn(Client c) {
         if (configInstance.getConfigData() == null) {
-            System.out.println("Warning! Incorrect or missing config file!");
+            MatrixMinecraftBridge.LOG.error("Warning! Incorrect or missing config file!");
             return;
         }
-        System.out.println("LOGGED IN MATRIX");
+        MatrixMinecraftBridge.LOG.info("LOGGED IN MATRIX");
         RoomEventsCallback event = new RoomEventsCallback() {
 
             @Override
             public void onEventReceived(List<RoomEvent> roomEvents) throws IOException {
                 for (RoomEvent event : roomEvents) {
-                    // System.out.println(event.getRaw().toString());
+                    // MatrixMinecraftBridge.LOG.debug(event.getRaw().toString());
 
                     if (event.getType()
                         .equals("m.room.member")
@@ -114,12 +114,12 @@ public class MatrixClient {
                             .equals(
                                 configInstance.getConfigData()
                                     .getRoomId())) {
-                                        // System.out.println("RECEIVED MESSAGE EVENT");
+                                        // MatrixMinecraftBridge.LOG.debug("RECEIVED MESSAGE EVENT");
                                         if (event.getSender()
                                             .equals(
                                                 c.getLoginData()
                                                     .getUser_id())) {
-                                            // System.out.println("Ignoring own message");
+                                            // MatrixMinecraftBridge.LOG.debug("Ignoring own message");
                                             return;
                                         }
                                         // Sends a readreceipt for every received message
@@ -171,12 +171,12 @@ public class MatrixClient {
 
     public void sendToMatrix(String message) {
         if (configInstance.getConfigData() == null) {
-            System.out.println("Warning! Incorrect or missing config file!");
+            MatrixMinecraftBridge.LOG.warn("Incorrect or missing config file!");
             return;
         }
-        // System.out.println("received message to send: " + message);
+        // MatrixMinecraftBridge.LOG.debug("received message to send: " + message);
         if (client == null) {
-            System.out.println("Warning client is null!");
+            MatrixMinecraftBridge.LOG.warn("Client is null!");
             return;
         }
         if (roomId == null) {
@@ -187,13 +187,13 @@ public class MatrixClient {
                 .getRoomId();
         }
         if (roomId == null) {
-            System.out.println("Warning! Room ID not set!");
+            MatrixMinecraftBridge.LOG.warn("Room ID not set!");
             return;
         }
         try {
             client.sendText(roomId, message, null);
         } catch (Exception e) {
-            System.out.println("Warning! Failed to send message to room!");
+            MatrixMinecraftBridge.LOG.warn("Failed to send message to room!");
         }
     }
 }

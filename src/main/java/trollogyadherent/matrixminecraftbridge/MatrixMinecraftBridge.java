@@ -2,6 +2,9 @@ package trollogyadherent.matrixminecraftbridge;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -20,6 +23,7 @@ public class MatrixMinecraftBridge {
     public static final String NAME = "Matrix Minecraft Bridge 1.7.10";
     public static final String VERSION = Tags.VERSION;
     public static final String CONFIGFILELOCATION = "config/matrix-bridge.json";
+    public static final Logger LOG = LogManager.getLogger(MODID);
 
     private Config configInstance;
     private MatrixClient matrixClientInstance;
@@ -38,10 +42,10 @@ public class MatrixMinecraftBridge {
     public void init(FMLInitializationEvent event) {
         configInstance = Config.getInstance();
         if (configInstance.getConfigData() == null) {
-            System.out.println("Warning! Incorrect or missing config file!");
+            LOG.warn("Incorrect or missing config file!");
             return;
         }
-        System.out.println(
+        MatrixMinecraftBridge.LOG.debug(
             configInstance.getConfigData()
                 .getHost());
         matrixClientInstance = MatrixClient.getInstance();
@@ -54,7 +58,7 @@ public class MatrixMinecraftBridge {
             configInstance = Config.getInstance();
         }
         if (configInstance.getConfigData() == null) {
-            System.out.println("Warning! Incorrect or missing config file!");
+            LOG.warn("Incorrect or missing config file!");
             return;
         }
         MatrixClient.getInstance()
@@ -69,7 +73,7 @@ public class MatrixMinecraftBridge {
             configInstance = Config.getInstance();
         }
         if (configInstance.getConfigData() == null) {
-            System.out.println("Warning! Incorrect or missing config file!");
+            LOG.warn("Incorrect or missing config file!");
             return;
         }
         MatrixClient.getInstance()
